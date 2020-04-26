@@ -39,14 +39,14 @@ def edit(text):
     editor = get_editor()
     filename = tempfile.mktemp(suffix=".html")
 
-    with open(filename, "wt") as file:
+    with open(filename, "wt", encoding="utf-8") as file:
         file.write(text)
 
     cmd_list = editor.split() + [filename]
     proc = subprocess.Popen(cmd_list, close_fds=True)
     proc.communicate()
 
-    with open(filename, "rt") as file:
+    with open(filename, "rt", encoding="utf-8") as file:
         return file.read()
 
 
